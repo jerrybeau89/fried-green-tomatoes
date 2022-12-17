@@ -4,11 +4,130 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/assets/images/FGT.jpeg" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">          
   <link rel="stylesheet" href="assets/css/style.css">
   <title>Fried Green Tomatoes</title>
 </head>
+
 <body>
+  <!-- This is our header -->
+  <header class="center red darken-1 yellow-text z-depth-4">
+    <h1>Fried Green T<img id="fgt-img" src="/assets/images/FGTH.png" alt="">mat<img id="fgt-img" src="/assets/images/FGTH.png" alt="">es</h1>
+  </header>
+<!-- This is the search field and button -->
+  <div class="row">
+    <form class="col s12 m3 hoverable">
+      <div class="row">
+        <div class="input-field col s12 m8">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Search for your movie...</label>
+          <a class="red darken-2 waves-effect waves-green waves-light btn-small"><i class="material-icons right">movie</i>Search</a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- This is to test the scale-out feature -->
+  <a id="toggle" class="btn">toggle</a>
+
+  <!-- This section will hold randomly generate html of 4-5 movies with a popularity of 85-90% or more. -->
+  <div class="container section">
+    <div class="row">
+      <div class="col s12 m3 hoverable">
+        <div class="card">
+          <div class="card-image">
+            <img src="images/sample-1.jpg">
+            <span class="card-title black-text">Card Title</span>
+          </div>
+          <div class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m3 hoverable">
+        <div class="card">
+          <div class="card-image">
+            <img src="images/sample-1.jpg">
+            <span class="card-title black-text">Card Title</span>
+          </div>
+          <div class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m3 hoverable">
+        <div class="card">
+          <div class="card-image">
+            <img src="images/sample-1.jpg">
+            <span class="card-title black-text">Card Title</span>
+          </div>
+          <div class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m3 hoverable">
+        <div class="card">
+          <div class="card-image">
+            <img src="images/sample-1.jpg">
+            <span class="card-title black-text">Card Title</span>
+          </div>
+          <div class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- This will be where the video trailer pops up, it should be hidden with the scale-out class -->
+  <div id="scale" class="container scale-transition scale-in">
+    <div class="video-container">
+      <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!--This is only tester code for a filler, need to develop two columns containing popular movies and/or TV shows. This section will be able to be sorted A-Z, popularity, genre, or actor?  -->
+ <div class="container left">
+    <div class="section">
+      <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s2">
+              <img src="images/yuna.jpg" alt="" class="circle responsive-img"> 
+            </div>
+            <div class="col s10">
+              <span class="black-text">
+                This is a square image. Add the "circle" class to it to make it appear circular.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
   
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="assets/js/script.js"></script>
 </body>
 </html>
