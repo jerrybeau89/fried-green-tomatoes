@@ -29,7 +29,9 @@
     </form>
   </div>
   <!-- This is to test the scale-out feature -->
-  <a id="toggle" class="btn">toggle</a>
+  <a id="toggle" onclick="$('#scale').removeClass('scale-in').addClass('scale-out')" class="btn">On</a>
+
+  <a id="toggle" onclick="$('#scale').removeClass('scale-out').addClass('scale-in')" class="btn">Off</a>
 
   <!-- This section will hold randomly generate html of 4-5 movies with a popularity of 85-90% or more. -->
   <div class="container section">
@@ -37,60 +39,60 @@
       <div class="col s12 m3 hoverable">
         <div class="card">
           <div class="card-image">
-            <img src="images/sample-1.jpg">
-            <span class="card-title black-text">Card Title</span>
+            <img src="assets/images/FGTH.png">
           </div>
           <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively.</p>
+            <p class="pop">Popularity: </p>
+            <p class="actors">Actors: </p>
+            <p class="genres">Genre:</p>
           </div>
           <div class="card-action">
-            <a href="#">This is a link</a>
+            <a class="movie-title" href="#">Movie Title</a>
           </div>
         </div>
       </div>
       <div class="col s12 m3 hoverable">
         <div class="card">
           <div class="card-image">
-            <img src="images/sample-1.jpg">
-            <span class="card-title black-text">Card Title</span>
+            <img src="assets/images/FGTH.png">
           </div>
           <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively.</p>
+            <p class="pop">Popularity: </p>
+            <p class="actors">Actors: </p>
+            <p class="genres">Genre:</p>
           </div>
           <div class="card-action">
-            <a href="#">This is a link</a>
+            <a class="movie-title" href="#">Movie Title</a>
           </div>
         </div>
       </div>
       <div class="col s12 m3 hoverable">
         <div class="card">
           <div class="card-image">
-            <img src="images/sample-1.jpg">
-            <span class="card-title black-text">Card Title</span>
+            <img src="assets/images/FGTH.png">
           </div>
           <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively.</p>
+            <p class="pop">Popularity: </p>
+            <p class="actors">Actors: </p>
+            <p class="genres">Genre:</p>
           </div>
           <div class="card-action">
-            <a href="#">This is a link</a>
+            <a class="movie-title" href="#">Movie Title</a>
           </div>
         </div>
       </div>
       <div class="col s12 m3 hoverable">
         <div class="card">
           <div class="card-image">
-            <img src="images/sample-1.jpg">
-            <span class="card-title black-text">Card Title</span>
+            <img src="assets/images/FGTH.png">
           </div>
           <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively.</p>
+            <p class="pop">Popularity: </p>
+            <p class="actors">Actors: </p>
+            <p class="genres">Genre:</p>
           </div>
           <div class="card-action">
-            <a href="#">This is a link</a>
+            <a class="movie-title" href="#">Movie Title</a>
           </div>
         </div>
       </div>
@@ -98,32 +100,118 @@
   </div>
 
   <!-- This will be where the video trailer pops up, it should be hidden with the scale-out class -->
-  <div id="scale" class="container scale-transition scale-in">
+  <div id="scale" class="container scale-transition">
     <div class="video-container">
       <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
   <!--This is only tester code for a filler, need to develop two columns containing popular movies and/or TV shows. This section will be able to be sorted A-Z, popularity, genre, or actor?  -->
- <div class="container left">
-    <div class="section">
-      <div class="col s12 m8 offset-m2 l6 offset-l3">
-        <div class="card-panel grey lighten-5 z-depth-1">
-          <div class="row valign-wrapper">
-            <div class="col s2">
-              <img src="images/yuna.jpg" alt="" class="circle responsive-img"> 
-            </div>
-            <div class="col s10">
-              <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-            </div>
-          </div>
+<div class="container left">
+ <div class="row">
+    <div class="col s6">
+      <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
         </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <a href="http://">Link to a Movie</a>
+        </div>
+    </div>
+    <div class="col s6">
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <a href="http://">Link to a Movie</a>
       </div>
     </div>
   </div>
- 
+</div>
+
   
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
