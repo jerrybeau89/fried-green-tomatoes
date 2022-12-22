@@ -18,60 +18,71 @@
 //             console.log (data);
 //         })
 // }
+let movieSearch = $('#search-input').val();
 
-// function getOMDBAPI() {
-//     let OMDBUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=7badcfc8";
-//     fetch (OMDBUrl)
-//         .then (function (response){
-//             if (response.ok) { 
-//                 return response.json();
-//             }else {
-//                 return Promise.reject("error: "+ response.status)
-//             }      
-//         })
-//         .then (function (data){
-//             console.log (data);
-            
-//             let movieTitle = data.Title;
-//             let popularityRatingOne = parseFloat(data.Ratings[0].Value);
-//             let popularityRatingTwo = parseFloat(data.Ratings[1].Value);
-//             let popularityRatingThree = parseFloat(data.Ratings[2].Value);
 
-//             let popularityRatingAvg = ((popularityRatingOne *10) + popularityRatingTwo + popularityRatingThree) / 3;
+$('#search-btn').click(function(event){
+    event.preventDefault();
+    getOMDBAPI();
+    console.log(movieSearch);
+  });
 
-//             console.log(popularityRatingAvg);
 
-//             let movieDivider = $('<div>');
-//             let movieLine = $('<div>');
-//             let movieTitleLink = $('<a>');
-//             let movieRatingContainer = $('<div>');
-//             let movieRatingLine = $('<div>');
-//             let movieRatingIcon =$('<img>')
-//             let movieRating = $('<span>');
+function getOMDBAPI() {
+    let OMDBUrl = "http://www.omdbapi.com/?t=" + $('#search-input').val() +  "&apikey=7badcfc8";
+    console.log(movieSearch);
+    fetch (OMDBUrl)
+        .then (function (response){
+            if (response.ok) { 
+                return response.json();
+            }else {
+                return Promise.reject("error: "+ response.status)
+            }      
+        })
+        .then (function (data){
+            console.log (data);
+            // let movieTitle = data.Title;
+            // let popularityRatingOne = parseFloat(data.Ratings[0].Value);
+            // let popularityRatingTwo = parseFloat(data.Ratings[1].Value);
+            // let popularityRatingThree = parseFloat(data.Ratings[2].Value);
 
-//             movieDivider.addClass('divider');
-//             movieLine.addClass('section');
-//             movieLine.addClass('black-text')
-//             movieRatingContainer.addClass('row');
-//             movieRatingLine.addClass('col');
-//             movieRatingLine.addClass('s6');
-//             movieRatingLine.addClass('offset-s10');
-//             movieTitleLink.attr('href', 'https://')
-//             movieTitleLink.text(movieTitle);
-//             movieRating.text(popularityRatingAvg + '%');
-//             movieRatingIcon.attr('src', "assets/images/FGTH.png");
-//             movieRatingIcon.attr('height', '15px');
-//             movieRatingIcon.attr('width', '15px');
+            // let popularityRatingAvg = ((popularityRatingOne *10) + popularityRatingTwo + popularityRatingThree) / 3;
 
-//             movieRating.append(movieRatingIcon);
-//             movieRatingContainer.append(movieRatingLine,movieTitleLink);
-//             movieRatingLine.append(movieRating);
-//             movieLine.append(movieTitleLink, movieRatingContainer);
-//             $('#movieHolder').append(movieDivider);
-//             $('#movieHolder').append(movieLine);
+            // console.log(popularityRatingAvg);
 
-//         })
-//}
+            // let movieDivider = $('<div>');
+            // let movieLine = $('<div>');
+            // let movieTitleLink = $('<a>');
+            // let movieRatingContainer = $('<div>');
+            // let movieRatingLine = $('<div>');
+            // let movieRatingIcon =$('<img>')
+            // let movieRating = $('<span>');
+
+            // movieDivider.addClass('divider');
+            // movieLine.addClass('section');
+            // movieLine.addClass('black-text')
+            // movieRatingContainer.addClass('row');
+            // movieRatingLine.addClass('col');
+            // movieRatingLine.addClass('s6');
+            // movieRatingLine.addClass('offset-s10');
+            // movieTitleLink.attr('href', 'https://')
+            // movieTitleLink.text(movieTitle);
+            // movieRating.text(popularityRatingAvg + '%');
+            // movieRatingIcon.attr('src', "assets/images/FGTH.png");
+            // movieRatingIcon.attr('height', '15px');
+            // movieRatingIcon.attr('width', '15px');
+
+            // movieRating.append(movieRatingIcon);
+            // movieRatingContainer.append(movieRatingLine,movieTitleLink);
+            // movieRatingLine.append(movieRating);
+            // movieLine.append(movieTitleLink, movieRatingContainer);
+            // $('#movieHolder').append(movieDivider);
+            // $('#movieHolder').append(movieLine);
+
+            $('#search-input').val('');
+
+        })
+}
 
 function getRandomMoviePage(max) {
     return Math.floor(Math.random() * max);
