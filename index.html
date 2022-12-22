@@ -27,18 +27,14 @@
       </div>
     </form>
   </div>
-  <!-- This is to test the scale-out feature -->
-  <a id="toggle" onclick="$('#scale').removeClass('scale-in').addClass('scale-out')" class="btn">On</a>
-
-  <a id="toggle" onclick="$('#scale').removeClass('scale-out').addClass('scale-in')" class="btn">Off</a>
-
+  
   <!-- This section will hold randomly generate html of 4-5 movies with a popularity of 85-90% or more. -->
   <div class="container section">
     <div class="row">
       <div class="col s12 m3 hoverable">
         <div class="card">
           <div class="card-image">
-            <img src="assets/images/FGTH.png">
+            <img class="responsive-img" src="assets/images/FGTH.png">
           </div>
           <div class="card-content">
             <p class="pop">Popularity: </p>
@@ -53,7 +49,7 @@
       <div class="col s12 m3 hoverable">
         <div class="card">
           <div class="card-image">
-            <img src="assets/images/FGTH.png">
+            <img class="responsive-img" src="assets/images/FGTH.png">
           </div>
           <div class="card-content">
             <p class="pop">Popularity: </p>
@@ -68,7 +64,7 @@
       <div class="col s12 m3 hoverable">
         <div class="card">
           <div class="card-image">
-            <img src="assets/images/FGTH.png">
+            <img class="responsive-img" src="assets/images/FGTH.png">
           </div>
           <div class="card-content">
             <p class="pop">Popularity: </p>
@@ -83,7 +79,7 @@
       <div class="col s12 m3 hoverable">
         <div class="card">
           <div class="card-image">
-            <img src="assets/images/FGTH.png">
+            <img class="responsive-img" src="assets/images/FGTH.png">
           </div>
           <div class="card-content">
             <p class="pop">Popularity: </p>
@@ -98,6 +94,8 @@
     </div>
   </div>
 
+  <h5 class="center">Random Movies By Popularity</h5>
+  
   <!-- This will be where the video trailer pops up, it should be hidden with the scale-out class -->
   <!-- <div id="scale" class="container scale-transition">
     <div class="video-container">
@@ -106,219 +104,24 @@
   </div> -->
 
   <!--This is only tester code for a filler, need to develop two columns containing popular movies and/or TV shows. This section will be able to be sorted A-Z, popularity, genre, or actor?  -->
-<div class="container left">
+<div class="container">
  <div class="row">
-    <div class="col s6" id="movieHolder">
-        <!-- <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <a href="http://">Link to a Movie</a>
-          <div class="row">
-            <div class="col s6 offset-s10">
-            <span>83%</span>
-            </div>
-            </div>
-        </div> -->
+    <div class="col s6" id="movieHolder1">
     </div>
-    <div class="col s6">
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
-      <div class="divider"></div>
-      <div class="section">
-        <a href="http://">Link to a Movie</a>
-        <div class="row">
-          <div class="col s6 offset-s10">
-          <span>83%</span>
-          </div>
-          </div>
-      </div>
+    <div class="col s6" id="movieHolder2">
     </div>
+  </div>
+</div>
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <img class="modal-poster">
+    <h5 class="modal-title"></h5>
+    <p class="modal-overview"></p>
+    <p class="modal-popularity">A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
   </div>
 </div>
 
