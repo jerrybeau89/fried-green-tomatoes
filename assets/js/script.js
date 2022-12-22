@@ -1,8 +1,3 @@
-// let c = 0;
-// $('#toggle').click( f => c === 0
-//  ? `${$('#scale').removeClass('scale-in').addClass('scale-out')} ${c = c+=1}` 
-//  : `${$('#scale').removeClass('scale-out').addClass('scale-in')} ${c = c-=1}`
-// );
 // function getYoutubeAPI() {
 //     let youtubeUrl = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=surfing&key=AIzaSyBssEFU_u6urwUNKclP0wPtcSsYCAqXBl0"
 //     fetch (youtubeUrl)
@@ -18,15 +13,15 @@
 //             console.log (data);
 //         })
 // }
+
+//This is used to declare the users search input and pass the value as a query in the API.
 let movieSearch = $('#search-input').val();
-
-
+//This creates an event listener for when the users clicks the search button.
 $('#search-btn').click(function(event){
     event.preventDefault();
     getOMDBAPI();
     console.log(movieSearch);
   });
-
 
 function getOMDBAPI() {
     let OMDBUrl = "http://www.omdbapi.com/?t=" + $('#search-input').val() +  "&apikey=7badcfc8";
@@ -83,7 +78,7 @@ function getOMDBAPI() {
 
         })
 }
-
+//This is a random number generator that is used to determine the page query for the API below. 
 function getRandomMoviePage(max) {
     return Math.floor(Math.random() * max);
 }
@@ -93,9 +88,12 @@ let popularityRating;
 let movieOverview;
 let movieGenre;
 
+//This API is for generating the Movies by Rating and Movies by Popularity sections. 
 function getTMDBAPI() {
+    //This for loop allows the function to call two separate APIs.
     for (let a = 0; a < 2; a++) {
-        let TMDBUrl;
+        
+    let TMDBUrl;
     if (a < 1){    
         TMDBUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomMoviePage(500);
     } else {
@@ -129,50 +127,31 @@ function getTMDBAPI() {
             let movieRating = $('<span>');
 
             movieDivider.addClass('divider');
-            movieLine.addClass('row')
-            movieRatingLine.addClass('col',);
-            movieRatingLine.addClass('s6');
-            movieRatingLine.addClass('right-align')
-            movieTitleLink.addClass('modal-trigger');
-            movieTitleLink.addClass('btn-flat');
-            movieTitleLink.addClass('blue-text')
-            movieTitleLink.addClass('col');
-            movieTitleLink.addClass('s6')
-            movieTitleLink.addClass('truncate')
-            movieTitleLink.addClass('tooltipped')
-            movieTitleLink.attr('id', 'movie-num'+ i);
-            movieTitleLink.attr('data-position', 'right');
-            movieTitleLink.attr('data-tooltip', movieTitle);
-            movieTitleLink.attr('href', '#modal1');
+            movieLine.addClass('row');
+            movieRatingLine.addClass('col s6 right-align');
+            movieRatingIcon.addClass('responsive-img');
+            movieTitleLink.addClass('modal-trigger btn-flat blue-text col s6 truncate tooltipped');
+            movieTitleLink.attr({
+                'id': 'movie-num'+ i, 'data-position': 'right', 'data-tooltip': movieTitle, 'href': '#modal1'});
+            movieRatingIcon.attr({'src': 'assets/images/FGTH.png', 'height': '30px','width': '30px'});
             movieTitleLink.text(movieTitle);
             movieRating.text(popularityRating + '%');
-            movieRatingIcon.attr('src', "assets/images/FGTH.png");
-            movieRatingIcon.addClass('responsive-img');
-            movieRatingIcon.attr('height', '30px');
-            movieRatingIcon.attr('width', '30px');
 
             movieRating.append(movieRatingIcon);
             movieRatingContainer.append(movieRatingLine,movieTitleLink);
             movieRatingLine.append(movieRating);
             movieLine.append(movieTitleLink, movieRatingContainer);
             if(a<1){
-            $('#movieHolder1').append(movieDivider);
-            $('#movieHolder1').append(movieLine);
+            $('#movieHolder1').append(movieDivider, movieLine);
             }else {
-            $('#movieHolder2').append(movieDivider);
-            $('#movieHolder2').append(movieLine);
-
-            document.addEventListener('DOMContentLoaded', function() {
-                var elems = document.querySelectorAll('.tooltipped');
-                var instances = M.Tooltip.init(elems, {
-                    enterDelay: 1000,
-                    exitDelay: 0
-                });
+            $('#movieHolder2').append(movieDivider, movieLine);
+            }
+            $(document).ready(function(){
+                $('.tooltipped').tooltip();
               });
-            }
-            }
-        })
-    }    
+        }
+    })    
+    }
 }
 document.addEventListener('DOMContentLoaded', function modalInfo() {
     let elems = document.querySelectorAll('.modal');
@@ -180,6 +159,40 @@ document.addEventListener('DOMContentLoaded', function modalInfo() {
     // $('modal-title').append(movieTitle);
     // $('modal-overview').append(movieOverview);
   });
-//getOMDBAPI();
 getTMDBAPI();
 //getYoutubeAPI();
+
+let id = null;
+function myMove() {
+  let elem = document.getElementById("fgt-img");   
+  let pos = 0;
+  clearInterval(id);
+  id = setInterval(frame, 6);
+  function frame() {
+    if (pos == 950) {
+      clearInterval(id);
+    } else {
+      pos++;  
+      elem.style.left = pos + 'px';
+      elem.style.top = pos/39 + 'px'; 
+    }
+  }
+}
+let id2 = null;
+function myMoveTwo() {
+  let elem2 = document.getElementById("fgt-img2");   
+  let pos2 = 0;
+  clearInterval(id2);
+  id2 = setInterval(frame, 11);
+  function frame() {
+    if (pos2 == 537) {
+      clearInterval(id2);
+    } else {
+      pos2++;  
+      elem2.style.right = pos2 + 'px';
+      elem2.style.top = pos2/24 + 'px'; 
+    }
+  }
+}
+setTimeout(myMove, 10000);
+setTimeout(myMoveTwo, 10000);

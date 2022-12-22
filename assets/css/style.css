@@ -1,8 +1,44 @@
-#fgt-img {
+#fgt-img, #fgt-img2 {
   height: 35px;
   object-fit: scale-down;
   max-width: 50%;
+  position: absolute;
 }
+
+#animate {
+  position: relative;
+}
+
+#spin:hover, #spin3:hover {
+  animation-name: rotate;
+  animation-duration: 3s;
+  animation-delay: 1s;
+}
+
+#spin2:hover, #spin4:hover {
+  animation-name: rotate2;
+  animation-duration: 3s;
+  animation-delay: 1s;
+}
+
+@keyframes rotate{
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate2{
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(-360deg);
+  }
+}
+
 /*  
 .percentage-text {
   vertical-align: text-top;
