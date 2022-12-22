@@ -18,9 +18,75 @@
 //             console.log (data);
 //         })
 // }
-function getOMDBAPI() {
-    let OMDBUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=7badcfc8";
-    fetch (OMDBUrl)
+
+// function getOMDBAPI() {
+//     let OMDBUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=7badcfc8";
+//     fetch (OMDBUrl)
+//         .then (function (response){
+//             if (response.ok) { 
+//                 return response.json();
+//             }else {
+//                 return Promise.reject("error: "+ response.status)
+//             }      
+//         })
+//         .then (function (data){
+//             console.log (data);
+            
+//             let movieTitle = data.Title;
+//             let popularityRatingOne = parseFloat(data.Ratings[0].Value);
+//             let popularityRatingTwo = parseFloat(data.Ratings[1].Value);
+//             let popularityRatingThree = parseFloat(data.Ratings[2].Value);
+
+//             let popularityRatingAvg = ((popularityRatingOne *10) + popularityRatingTwo + popularityRatingThree) / 3;
+
+//             console.log(popularityRatingAvg);
+
+//             let movieDivider = $('<div>');
+//             let movieLine = $('<div>');
+//             let movieTitleLink = $('<a>');
+//             let movieRatingContainer = $('<div>');
+//             let movieRatingLine = $('<div>');
+//             let movieRatingIcon =$('<img>')
+//             let movieRating = $('<span>');
+
+//             movieDivider.addClass('divider');
+//             movieLine.addClass('section');
+//             movieLine.addClass('black-text')
+//             movieRatingContainer.addClass('row');
+//             movieRatingLine.addClass('col');
+//             movieRatingLine.addClass('s6');
+//             movieRatingLine.addClass('offset-s10');
+//             movieTitleLink.attr('href', 'https://')
+//             movieTitleLink.text(movieTitle);
+//             movieRating.text(popularityRatingAvg + '%');
+//             movieRatingIcon.attr('src', "assets/images/FGTH.png");
+//             movieRatingIcon.attr('height', '15px');
+//             movieRatingIcon.attr('width', '15px');
+
+//             movieRating.append(movieRatingIcon);
+//             movieRatingContainer.append(movieRatingLine,movieTitleLink);
+//             movieRatingLine.append(movieRating);
+//             movieLine.append(movieTitleLink, movieRatingContainer);
+//             $('#movieHolder').append(movieDivider);
+//             $('#movieHolder').append(movieLine);
+
+//         })
+//}
+
+function getRandomMoviePage(max) {
+    return Math.floor(Math.random() * max);
+}
+
+let movieTitle;
+let popularityRating;
+let movieOverview;
+let movieGenre;
+
+function getTMDBAPI() {
+    for (let a = 0; a < 2; a++) {
+        
+    let TMDBUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomMoviePage(500);
+    fetch (TMDBUrl)
         .then (function (response){
             if (response.ok) { 
                 return response.json();
@@ -30,60 +96,63 @@ function getOMDBAPI() {
         })
         .then (function (data){
             console.log (data);
-            
-            let movieTitle = data.Title;
-            let popularityRatingOne = data.Ratings[0].Value;
-            let popularitySourceOne = data.Ratings[0].Source;
-            let popularityRatingTwo = data.Ratings[1].Value;
-            let popularitySourceTwo = data.Ratings[1].Source;
-            let popularityRatingThree = data.Ratings[2].Value;
-            let popularitySourceThree = data.Ratings[2].Source;
-            let arr =[(popularitySourceOne + ' ' + popularityRatingOne)
-            ];
-            console.log(arr);
 
-            let movieContainer = $('<div>');
+            for (let i = 0; i < 10; i++) {
+            movieTitle = data.results[i].title;
+            popularityRating = (parseFloat(data.results[i].vote_average) *10);
+            movieOverview = data.results[i].overview;
+            movieGenre
+           
+            console.log(popularityRating);
+
+            let movieDivider = $('<div>');
             let movieLine = $('<div>');
             let movieTitleLink = $('<a>');
             let movieRatingContainer = $('<div>');
             let movieRatingLine = $('<div>');
+            let movieRatingIcon =$('<img>')
             let movieRating = $('<span>');
 
-            movieContainer.addClass('divider');
+            movieDivider.addClass('divider');
             movieLine.addClass('section');
-            movieTitleLink.text(movieTitle);
+            movieLine.addClass('black-text')
             movieRatingContainer.addClass('row');
-            movieRatingLine.addClass('col');
+            movieRatingLine.addClass('col',);
             movieRatingLine.addClass('s6');
             movieRatingLine.addClass('offset-s10');
-            movieRating.text(popularityRatingOne);
+            movieTitleLink.addClass('modal-trigger');
+            movieTitleLink.addClass('btn-flat');
+            movieTitleLink.addClass('blue-text');
+            movieTitleLink.attr('id', 'movie-num'+ i);
+            movieTitleLink.attr('href', '#modal1');
+            movieTitleLink.text(movieTitle);
+            movieRating.text(popularityRating + '%');
+            movieRatingIcon.attr('src', "assets/images/FGTH.png");
+            movieRatingIcon.addClass('responsive-img');
+            movieRatingIcon.attr('height', '30px');
+            movieRatingIcon.attr('width', '30px');
 
-           
-            movieContainer.append(movieTitle, popularityRatingOne);
-
-            $('#movieHolder').append(movieContainer);
-            // console.log(movieTitle);
-
-
+            movieRating.append(movieRatingIcon);
+            movieRatingContainer.append(movieRatingLine,movieTitleLink);
+            movieRatingLine.append(movieRating);
+            movieLine.append(movieTitleLink, movieRatingContainer);
+            if(a<1){
+            $('#movieHolder1').append(movieDivider);
+            $('#movieHolder1').append(movieLine);
+            }else {
+            $('#movieHolder2').append(movieDivider);
+            $('#movieHolder2').append(movieLine);
+            }
+            }
         })
+    }    
 }
-
-// function getTMDBAPI() {
-//     let TMDBUrl = "https://api.themoviedb.org/3/movie/550?api_key=ddb8f203c5d7bd9f839a468fe47853cb";
-//     fetch (TMDBUrl)
-//         .then (function (response){
-//             if (response.ok) { 
-//                 return response.json();
-//             }else {
-//                 return Promise.reject("error: "+ response.status)
-//             }      
-//         })
-//         .then (function (data){
-//             let TMDBDataUrl = "https://api.themoviedb.org/3/movie/550?api_key=ddb8f203c5d7bd9f839a468fe47853cb"
-//             console.log (data);
-//         })
-// }
-
-getOMDBAPI();
-//getTMDBAPI();
+document.addEventListener('DOMContentLoaded', function modalInfo() {
+    let elems = document.querySelectorAll('.modal');
+    let instances = M.Modal.init(elems, preventScrolling=true);
+    // $('modal-title').append(movieTitle);
+    // $('modal-overview').append(movieOverview);
+  });
+//getOMDBAPI();
+getTMDBAPI();
 //getYoutubeAPI();
