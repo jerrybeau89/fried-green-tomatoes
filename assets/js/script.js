@@ -95,8 +95,12 @@ let movieGenre;
 
 function getTMDBAPI() {
     for (let a = 0; a < 2; a++) {
-        
-    let TMDBUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomMoviePage(500);
+        let TMDBUrl;
+    if (a < 1){    
+        TMDBUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomMoviePage(500);
+    } else {
+        TMDBUrl = "https://api.themoviedb.org/3/movie/popular?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomMoviePage(5);
+    }
     fetch (TMDBUrl)
         .then (function (response){
             if (response.ok) { 
@@ -125,16 +129,20 @@ function getTMDBAPI() {
             let movieRating = $('<span>');
 
             movieDivider.addClass('divider');
-            movieLine.addClass('section');
-            movieLine.addClass('black-text')
-            movieRatingContainer.addClass('row');
+            movieLine.addClass('row')
             movieRatingLine.addClass('col',);
             movieRatingLine.addClass('s6');
-            movieRatingLine.addClass('offset-s10');
+            movieRatingLine.addClass('right-align')
             movieTitleLink.addClass('modal-trigger');
             movieTitleLink.addClass('btn-flat');
-            movieTitleLink.addClass('blue-text');
+            movieTitleLink.addClass('blue-text')
+            movieTitleLink.addClass('col');
+            movieTitleLink.addClass('s6')
+            movieTitleLink.addClass('truncate')
+            movieTitleLink.addClass('tooltipped')
             movieTitleLink.attr('id', 'movie-num'+ i);
+            movieTitleLink.attr('data-position', 'right');
+            movieTitleLink.attr('data-tooltip', movieTitle);
             movieTitleLink.attr('href', '#modal1');
             movieTitleLink.text(movieTitle);
             movieRating.text(popularityRating + '%');
@@ -153,6 +161,14 @@ function getTMDBAPI() {
             }else {
             $('#movieHolder2').append(movieDivider);
             $('#movieHolder2').append(movieLine);
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.tooltipped');
+                var instances = M.Tooltip.init(elems, {
+                    enterDelay: 1000,
+                    exitDelay: 0
+                });
+              });
             }
             }
         })
