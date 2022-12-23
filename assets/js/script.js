@@ -1,18 +1,3 @@
-// function getYoutubeAPI() {
-//     let youtubeUrl = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=surfing&key=AIzaSyBssEFU_u6urwUNKclP0wPtcSsYCAqXBl0"
-//     fetch (youtubeUrl)
-//         .then (function (response){
-//             if (response.ok) { 
-//                 return response.json();
-//             }else {
-//                 return Promise.reject("error: "+ response.status)
-//             }      
-//         }) 
-//         .then (function (data){
-//             let YoutubeDataUrl = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=surfing&key=AIzaSyBssEFU_u6urwUNKclP0wPtcSsYCAqXBl0"
-//             console.log (data);
-//         })
-// }
 
 //This is used to declare the users search input and pass the value as a query in the API.
 let movieSearch = $('#search-input').val();
@@ -83,11 +68,6 @@ function getRandomMoviePage(max) {
     return Math.floor(Math.random() * max);
 }
 
-let movieTitle;
-let popularityRating;
-let movieOverview;
-let movieGenre;
-
 //This API is for generating the Movies by Rating and Movies by Popularity sections. 
 function getTMDBAPI() {
     //This for loop allows the function to call two separate APIs.
@@ -111,12 +91,12 @@ function getTMDBAPI() {
             console.log (data);
 
             for (let i = 0; i < 10; i++) {
-            movieTitle = data.results[i].title;
-            popularityRating = (parseFloat(data.results[i].vote_average) *10);
-            movieOverview = data.results[i].overview;
-            movieGenre
+            let movieTitle = data.results[i].title;
+            let popularityRating = (parseFloat(data.results[i].vote_average) *10);
+            let movieOverview = data.results[i].overview;
+            let movieGenre = data.results[i].genre_ids;
            
-            console.log(popularityRating);
+            console.log(movieGenre);
 
             let movieDivider = $('<div>');
             let movieLine = $('<div>');
@@ -194,5 +174,5 @@ function myMoveTwo() {
     }
   }
 }
-setTimeout(myMove, 10000);
-setTimeout(myMoveTwo, 10000);
+setTimeout(myMove, 2000);
+setTimeout(myMoveTwo, 2000);
