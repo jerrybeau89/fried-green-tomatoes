@@ -21,36 +21,45 @@ function getOMDBAPI() {
         })
         .then (function (data){
             console.log (data);
-            // let movieTitle = data.Title;
-            // let popularityRatingOne = parseFloat(data.Ratings[0].Value);
-            // let popularityRatingTwo = parseFloat(data.Ratings[1].Value);
-            // let popularityRatingThree = parseFloat(data.Ratings[2].Value);
 
-            // let popularityRatingAvg = ((popularityRatingOne *10) + popularityRatingTwo + popularityRatingThree) / 3;
+            let movieTitle = data.Title;
+            let popularityRatingOne = parseFloat(data.Ratings[0].Value);
+            let popularityRatingTwo = parseFloat(data.Ratings[1].Value);
+            let popularityRatingThree = parseFloat(data.Ratings[2].Value);
+            let popularityRatingAvg = ((popularityRatingOne *10) + popularityRatingTwo + popularityRatingThree) / 3;
 
-            // console.log(popularityRatingAvg);
+            
+            console.log(popularityRatingAvg);
 
-            // let movieDivider = $('<div>');
-            // let movieLine = $('<div>');
-            // let movieTitleLink = $('<a>');
-            // let movieRatingContainer = $('<div>');
-            // let movieRatingLine = $('<div>');
-            // let movieRatingIcon =$('<img>')
-            // let movieRating = $('<span>');
+            // let movieModal = $('<div>');
+            let movieContent = $('<div>');
+            let movieTitleText = $('<h4>');
+            let moviePlot = $('<p>');
+            let movieGenre = $('<p>');
+            let movieActors = $('<p>');
+            let movieDirector =$('<p>');
+            let movieRating = $('<p>');
+            let modalFooter = $('<div>');
+            let modalAnchor = $('<a>');
+            let anchorClose = "Close";
 
-            // movieDivider.addClass('divider');
-            // movieLine.addClass('section');
-            // movieLine.addClass('black-text')
-            // movieRatingContainer.addClass('row');
-            // movieRatingLine.addClass('col');
-            // movieRatingLine.addClass('s6');
-            // movieRatingLine.addClass('offset-s10');
-            // movieTitleLink.attr('href', 'https://')
-            // movieTitleLink.text(movieTitle);
-            // movieRating.text(popularityRatingAvg + '%');
-            // movieRatingIcon.attr('src', "assets/images/FGTH.png");
-            // movieRatingIcon.attr('height', '15px');
-            // movieRatingIcon.attr('width', '15px');
+            // movieModal.addClass('modal');
+            // movieModal.attr({'id': 'modal1'});
+            movieContent.addClass('modal-content');
+            modalFooter.addClass('modal-footer');
+            modalAnchor.addClass('modal-close waves-effect waves-green btn-flap');
+            modalAnchor.attr({'href': '#!'});
+
+            movieTitleText.append(movieTitle);
+            modalAnchor.append(anchorClose);
+            movieRating.append(popularityRatingAvg);
+            // movieTitleText.addClass('modal-trigger');
+            // movieTitleText.attr({'href': '#modal1'});
+            movieContent.append(moviePlot, movieGenre, movieActors, movieDirector, movieRating, movieTitleText, movieTitle);
+            // movieModal.append(movieContent);
+            $('#modal1').append(movieContent);
+
+          
 
             // movieRating.append(movieRatingIcon);
             // movieRatingContainer.append(movieRatingLine,movieTitleLink);
@@ -61,6 +70,12 @@ function getOMDBAPI() {
 
             $('#search-input').val('');
 
+            document.addEventListener('DOMContentLoaded', function modalInfo() {
+              let elems = document.querySelectorAll('.modal');
+              let instances = M.Modal.init(elems, preventScrolling=true);
+              // $('modal-title').append(movieTitle);
+              // $('modal-overview').append(movieOverview);
+            });
         })
 }
 //This is a random number generator that is used to determine the page query for the API below. 
@@ -126,19 +141,20 @@ function getTMDBAPI() {
             }else {
             $('#movieHolder2').append(movieDivider, movieLine);
             }
-            $(document).ready(function(){
-                $('.tooltipped').tooltip();
-              });
+            // movieTitleLink.tooltip();
+            // $(document).ready(function(){
+            //     $('.tooltipped').tooltip();
+            //   });
         }
     })    
     }
 }
-document.addEventListener('DOMContentLoaded', function modalInfo() {
-    let elems = document.querySelectorAll('.modal');
-    let instances = M.Modal.init(elems, preventScrolling=true);
-    // $('modal-title').append(movieTitle);
-    // $('modal-overview').append(movieOverview);
-  });
+// document.addEventListener('DOMContentLoaded', function modalInfo() {
+//     let elems = document.querySelectorAll('.modal');
+//     let instances = M.Modal.init(elems, preventScrolling=true);
+//     // $('modal-title').append(movieTitle);
+//     // $('modal-overview').append(movieOverview);
+//   });
 getTMDBAPI();
 //getYoutubeAPI();
 
