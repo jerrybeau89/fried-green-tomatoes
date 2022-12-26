@@ -1,4 +1,3 @@
-
 //This is used to declare the users search input and pass the value as a query in the API.
 let movieSearch = $('#search-input').val();
 //This creates an event listener for when the users clicks the search button.
@@ -7,6 +6,11 @@ $('#search-btn').click(function(event){
     getOMDBAPI();
     console.log(movieSearch);
   });
+
+//This is a random number generator that is used to determine the page query for the API below. 
+function getRandomNumber(max) {
+  return Math.floor(Math.random() * max);
+}
 
 function getOMDBAPI() {
     let OMDBUrl = "http://www.omdbapi.com/?t=" + $('#search-input').val() +  "&apikey=7badcfc8";
@@ -23,13 +27,13 @@ function getOMDBAPI() {
             console.log (data);
 
             let movieTitle = data.Title;
-            let popularityRatingOne = parseFloat(data.Ratings[0].Value);
-            let popularityRatingTwo = parseFloat(data.Ratings[1].Value);
-            let popularityRatingThree = parseFloat(data.Ratings[2].Value);
-            let popularityRatingAvg = ((popularityRatingOne *10) + popularityRatingTwo + popularityRatingThree) / 3;
+            let TopRatedOne = parseFloat(data.Ratings[0].Value);
+            let TopRatedTwo = parseFloat(data.Ratings[1].Value);
+            let TopRatedThree = parseFloat(data.Ratings[2].Value);
+            let TopRatedAvg = ((TopRatedOne *10) + TopRatedTwo + TopRatedThree) / 3;
 
             
-            console.log(popularityRatingAvg);
+            console.log(TopRatedAvg);
 
             // let movieModal = $('<div>');
             let movieContent = $('<div>');
@@ -43,44 +47,18 @@ function getOMDBAPI() {
             let modalAnchor = $('<a>');
             let anchorClose = "Close";
 
-            // movieModal.addClass('modal');
-            // movieModal.attr({'id': 'modal1'});
             movieContent.addClass('modal-content');
             modalFooter.addClass('modal-footer');
             modalAnchor.addClass('modal-close waves-effect waves-green btn-flap');
             modalAnchor.attr({'href': '#!'});
-
             movieTitleText.append(movieTitle);
             modalAnchor.append(anchorClose);
-            movieRating.append(popularityRatingAvg);
-            // movieTitleText.addClass('modal-trigger');
-            // movieTitleText.attr({'href': '#modal1'});
+            movieRating.append(TopRatedAvg);
             movieContent.append(moviePlot, movieGenre, movieActors, movieDirector, movieRating, movieTitleText, movieTitle);
-            // movieModal.append(movieContent);
             $('#modal1').append(movieContent);
 
-          
-
-            // movieRating.append(movieRatingIcon);
-            // movieRatingContainer.append(movieRatingLine,movieTitleLink);
-            // movieRatingLine.append(movieRating);
-            // movieLine.append(movieTitleLink, movieRatingContainer);
-            // $('#movieHolder').append(movieDivider);
-            // $('#movieHolder').append(movieLine);
-
             $('#search-input').val('');
-
-            document.addEventListener('DOMContentLoaded', function modalInfo() {
-              let elems = document.querySelectorAll('.modal');
-              let instances = M.Modal.init(elems, preventScrolling=true);
-              // $('modal-title').append(movieTitle);
-              // $('modal-overview').append(movieOverview);
-            });
         })
-}
-//This is a random number generator that is used to determine the page query for the API below. 
-function getRandomMoviePage(max) {
-    return Math.floor(Math.random() * max);
 }
 
 //This API is for generating the Movies by Rating and Movies by Popularity sections. 
@@ -90,9 +68,9 @@ function getTMDBAPI() {
         
     let TMDBUrl;
     if (a < 1){    
-        TMDBUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomMoviePage(500);
+        TMDBUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomNumber(500);
     } else {
-        TMDBUrl = "https://api.themoviedb.org/3/movie/popular?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomMoviePage(5);
+        TMDBUrl = "https://api.themoviedb.org/3/movie/popular?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomNumber(5);
     }
     fetch (TMDBUrl)
         .then (function (response){
@@ -107,11 +85,10 @@ function getTMDBAPI() {
 
             for (let i = 0; i < 10; i++) {
             let movieTitle = data.results[i].title;
-            let popularityRating = (parseFloat(data.results[i].vote_average) *10);
-            let movieOverview = data.results[i].overview;
+            let TopRated = (parseFloat(data.results[i].vote_average) *10);
             let movieGenre = data.results[i].genre_ids;
            
-            console.log(movieGenre);
+            console.log(typeof TopRated);
 
             let movieDivider = $('<div>');
             let movieLine = $('<div>');
@@ -125,12 +102,10 @@ function getTMDBAPI() {
             movieLine.addClass('row');
             movieRatingLine.addClass('col s6 right-align');
             movieRatingIcon.addClass('responsive-img');
-            movieTitleLink.addClass('modal-trigger btn-flat blue-text col s6 truncate tooltipped');
-            movieTitleLink.attr({
-                'id': 'movie-num'+ i, 'data-position': 'right', 'data-tooltip': movieTitle, 'href': '#modal1'});
+            movieTitleLink.addClass('btn-flat blue-text col s6 truncate');
             movieRatingIcon.attr({'src': 'assets/images/FGTH.png', 'height': '30px','width': '30px'});
             movieTitleLink.text(movieTitle);
-            movieRating.text(popularityRating + '%');
+            movieRating.text(TopRated + '%');
 
             movieRating.append(movieRatingIcon);
             movieRatingContainer.append(movieRatingLine,movieTitleLink);
@@ -141,22 +116,43 @@ function getTMDBAPI() {
             }else {
             $('#movieHolder2').append(movieDivider, movieLine);
             }
-            // movieTitleLink.tooltip();
-            // $(document).ready(function(){
-            //     $('.tooltipped').tooltip();
-            //   });
         }
     })    
     }
 }
-// document.addEventListener('DOMContentLoaded', function modalInfo() {
-//     let elems = document.querySelectorAll('.modal');
-//     let instances = M.Modal.init(elems, preventScrolling=true);
-//     // $('modal-title').append(movieTitle);
-//     // $('modal-overview').append(movieOverview);
-//   });
-getTMDBAPI();
-//getYoutubeAPI();
+
+//This API is for generating the Featured Movies by Rating. 
+function getTMDBFeaturedMovie() {  
+  let TMDBFeaturedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomNumber(3);
+  fetch (TMDBFeaturedUrl)
+      .then (function (response){
+          if (response.ok) { 
+              return response.json();
+          }else {
+              return Promise.reject("error: "+ response.status)
+          }      
+      })
+      .then (function (data){
+          console.log (data);
+
+          for (let f = 0; f < 4; f++) {         
+        
+          let featuredMovieTitle = data.results[f].title;
+          let featuredTopRated = (parseFloat(data.results[f].vote_average) *10);
+          let featuredMovieGenre = data.results[f].genre_ids;
+          let movieOverview = data.results[f].overview;
+         
+          console.log(featuredMovieGenre);
+          console.log(featuredMovieTitle);
+
+          $('#pop' + f).append(featuredTopRated);
+          $('#overview' + f).append(movieOverview);
+          // $('#genres').append(featuredMovieGenre);
+          $('#movie-title' + f).append(featuredMovieTitle);
+
+          }
+      })    
+}
 
 let id = null;
 function myMove() {
@@ -192,3 +188,5 @@ function myMoveTwo() {
 }
 setTimeout(myMove, 2000);
 setTimeout(myMoveTwo, 2000);
+getTMDBAPI();
+getTMDBFeaturedMovie();
