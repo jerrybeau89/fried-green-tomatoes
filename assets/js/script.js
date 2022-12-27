@@ -4,6 +4,7 @@ let movieSearch = $('#search-input').val();
 $('#search-btn').click(function(event){
     event.preventDefault();
     getOMDBAPI();
+    window.location.href = "search-index.html"
     console.log(movieSearch);
   });
 
