@@ -24,7 +24,7 @@ function getOMDBAPI() {
             }      
         })
         .then (function (data){
-
+          
             let movieTitle = data.Title;
             let TopRatedOne = parseFloat(data.Ratings[0].Value);
             let TopRatedTwo = parseFloat(data.Ratings[1].Value);
@@ -37,16 +37,10 @@ function getOMDBAPI() {
             let movieActors = $('<p>');
             let movieDirector =$('<p>');
             let movieRating = $('<p>');
-            let modalFooter = $('<div>');
-            let modalAnchor = $('<a>');
-            let anchorClose = "Close";
+           
 
-            movieContent.addClass('modal-content');
-            modalFooter.addClass('modal-footer');
-            modalAnchor.addClass('modal-close waves-effect waves-green btn-flap');
-            modalAnchor.attr({'href': '#!'});
+            
             movieTitleText.append(movieTitle);
-            modalAnchor.append(anchorClose);
             movieRating.append(TopRatedAvg);
             movieContent.append(moviePlot, movieGenre, movieActors, movieDirector, movieRating, movieTitleText, movieTitle);
             $('#modal1').append(movieContent);
