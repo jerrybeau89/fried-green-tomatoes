@@ -4,7 +4,7 @@ let movieSearch = $('#search-input').val();
 $('#search-btn').click(function(event){
     event.preventDefault();
     getOMDBAPI();
-    window.location.href = "search-index.html"
+    window.location.href = "search-index.html";
     console.log(movieSearch);
   });
 
@@ -25,7 +25,7 @@ function getOMDBAPI() {
             }      
         })
         .then (function (data){
-          
+            console.log(data);
             let movieTitle = data.Title;
             let TopRatedOne = parseFloat(data.Ratings[0].Value);
             let TopRatedTwo = parseFloat(data.Ratings[1].Value);
@@ -68,7 +68,7 @@ function getTMDBMovieLists() {
             }      
         })
         .then (function (data){
-
+            console.log(data);
             for (let i = 0; i < 10; i++) {
             let movieTitle = data.results[i].title;
             let TopRated = (parseFloat(data.results[i].vote_average) *10);
@@ -121,39 +121,39 @@ function getTMDBFeaturedMovie() {
       })    
 }
 
-let id = null;
-function myMove() {
-  let elem = document.getElementById("fgt-img");   
-  let pos = 0;
-  clearInterval(id);
-  id = setInterval(frame, 6);
-  function frame() {
-    if (pos == 950) {
-      clearInterval(id);
-    } else {
-      pos++;  
-      elem.style.left = pos + 'px';
-      elem.style.top = pos/39 + 'px'; 
-    }
-  }
-}
-let id2 = null;
-function myMoveTwo() {
-  let elem2 = document.getElementById("fgt-img2");   
-  let pos2 = 0;
-  clearInterval(id2);
-  id2 = setInterval(frame, 11);
-  function frame() {
-    if (pos2 == 537) {
-      clearInterval(id2);
-    } else {
-      pos2++;  
-      elem2.style.right = pos2 + 'px';
-      elem2.style.top = pos2/24 + 'px'; 
-    }
-  }
-}
-setTimeout(myMove, 2000);
-setTimeout(myMoveTwo, 2000);
+// let id = null;
+// function myMove() {
+//   let elem = document.getElementById("fgt-img");   
+//   let pos = 0;
+//   clearInterval(id);
+//   id = setInterval(frame, 6);
+//   function frame() {
+//     if (pos == 950) {
+//       clearInterval(id);
+//     } else {
+//       pos++;  
+//       elem.style.left = pos + 'px';
+//       elem.style.top = pos/39 + 'px'; 
+//     }
+//   }
+// }
+// let id2 = null;
+// function myMoveTwo() {
+//   let elem2 = document.getElementById("fgt-img2");   
+//   let pos2 = 0;
+//   clearInterval(id2);
+//   id2 = setInterval(frame, 11);
+//   function frame() {
+//     if (pos2 == 537) {
+//       clearInterval(id2);
+//     } else {
+//       pos2++;  
+//       elem2.style.right = pos2 + 'px';
+//       elem2.style.top = pos2/24 + 'px'; 
+//     }
+//   }
+// }
+// setTimeout(myMove, 2000);
+// setTimeout(myMoveTwo, 2000);
 getTMDBMovieLists();
 getTMDBFeaturedMovie();
