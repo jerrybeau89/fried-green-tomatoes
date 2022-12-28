@@ -31,20 +31,7 @@ function getOMDBAPI() {
             let TopRatedTwo = parseFloat(data.Ratings[1].Value);
             let TopRatedThree = parseFloat(data.Ratings[2].Value);
             let TopRatedAvg = ((TopRatedOne *10) + TopRatedTwo + TopRatedThree) / 3;
-            let movieContent = $('<div>');
-            let movieTitleText = $('<h4>');
-            let moviePlot = $('<p>');
-            let movieGenre = $('<p>');
-            let movieActors = $('<p>');
-            let movieDirector =$('<p>');
-            let movieRating = $('<p>');
            
-
-            
-            movieTitleText.append(movieTitle);
-            movieRating.append(TopRatedAvg);
-            movieContent.append(moviePlot, movieGenre, movieActors, movieDirector, movieRating, movieTitleText, movieTitle);
-            $('#modal1').append(movieContent);
             $('#search-input').val('');
         })
 }
@@ -85,9 +72,9 @@ function getTMDBMovieLists() {
 
             //Separates the data for the two lists
             if(a<1){
-            document.getElementById('movieHolder').appendChild(movieHTML);
+            $('#movieHolder').append(movieHTML);
             }else {
-            document.getElementById('movieHolder1').appendChild(movieHTML);
+            $('#movieHolder1').append(movieHTML);
             }
         }
     })    

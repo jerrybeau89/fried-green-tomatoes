@@ -21,24 +21,29 @@ function getOMDBAPI() {
         .then (function (data){
             console.log(data);
             let movieTitle = data.Title;
-            let TopRatedOne = parseFloat(data.Ratings[0].Value);
-            let TopRatedTwo = parseFloat(data.Ratings[1].Value);
-            let TopRatedThree = parseFloat(data.Ratings[2].Value);
-            let TopRatedAvg = ((TopRatedOne *10) + TopRatedTwo + TopRatedThree) / 3;
-            let movieContent = $('<div>');
-            let movieTitleText = $('<h4>');
-            let moviePlot = $('<p>');
-            let movieGenre = $('<p>');
-            let movieActors = $('<p>');
-            let movieDirector =$('<p>');
-            let movieRating = $('<p>');
-           
-
+            let topRatingOne = parseFloat(data.Ratings[0].Value);
+            let topRatingTwo = parseFloat(data.Ratings[1].Value);
+            let topRatingThree = parseFloat(data.Ratings[2].Value);
+            let topRatingAvg = ((topRatingOne *10) + topRatingTwo + topRatingThree) / 3;
+            let moviePlot = data.Plot;
+            let movieActors = data.Actors;
+            let moviePoster = data.Poster;
+            let movieYear = data.Year;
+            let movieRated = data.Rated;
+            let movieDirector = data.Director;
+            let movieGenre = data.Genre;
+                  
+            $('#poster').attr({'src': moviePoster});
+            $('#movie-title').append(movieTitle);
+            $('#year').append(movieYear);
+            $('#rated').append(movieRated);
+            $('#genre').append(movieGenre);
+            $('#director').append(movieDirector);
+            $('#pop').append(topRatingAvg + '%'+ );
+            $('#actors').append(movieActors);
+            $('#overview').append(moviePlot);
             
-            movieTitleText.append(movieTitle);
-            movieRating.append(TopRatedAvg);
-            movieContent.append(moviePlot, movieGenre, movieActors, movieDirector, movieRating, movieTitleText, movieTitle);
-            $('#modal1').append(movieContent);
             $('#search-input').val('');
+            return;
         })
 }
