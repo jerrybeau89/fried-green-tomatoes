@@ -32,7 +32,6 @@ function getOMDBAPI() {
             let movieRated = data.Rated;
             let movieDirector = data.Director;
             let movieGenre = data.Genre;
-            
             let dataClear = ['#movie-title','#year', '#rated','#genre','#director','#pop','#actors','#overview','#poster'];
 
             for (let i = 0; i < dataClear.length; i++) {
