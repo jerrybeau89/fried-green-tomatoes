@@ -4,7 +4,7 @@ let movieSearch = $('#search-input').val();
 $('#search-btn').click(function(event){
     event.preventDefault();
     getOMDBAPI();
-    console.log(movieSearch);
+    
   });
 
 function getOMDBAPI() {
@@ -32,18 +32,25 @@ function getOMDBAPI() {
             let movieRated = data.Rated;
             let movieDirector = data.Director;
             let movieGenre = data.Genre;
-                  
+            
+            let dataClear = ['#movie-title','#year', '#rated','#genre','#director','#pop','#actors','#overview','#poster'];
+
+            for (let i = 0; i < dataClear.length; i++) {
+      
+            $(dataClear[i]).html('');
+            }
+
             $('#poster').attr({'src': moviePoster});
             $('#movie-title').append(movieTitle);
             $('#year').append(movieYear);
             $('#rated').append(movieRated);
             $('#genre').append(movieGenre);
             $('#director').append(movieDirector);
-            $('#pop').append(topRatingAvg + '%'+ );
+            $('#pop').append(topRatingAvg + '%');
             $('#actors').append(movieActors);
             $('#overview').append(moviePlot);
             
             $('#search-input').val('');
-            return;
+            
         })
 }
