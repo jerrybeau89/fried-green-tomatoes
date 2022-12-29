@@ -45,7 +45,7 @@ function getOMDBAPI() {
             $('#rated').append(movieRated);
             $('#genre').append(movieGenre);
             $('#director').append(movieDirector);
-            $('#pop').append(topRatingAvg + '%');
+            $('#pop').append(topRatingAvg.toFixed(1) + '%');
             $('#actors').append(movieActors);
             $('#overview').append(moviePlot);
             
