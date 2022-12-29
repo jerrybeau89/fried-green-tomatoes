@@ -59,6 +59,9 @@ transform: rotateY(180deg);
   padding: 0;
   margin: 0;
 }
+.home-button {
+  margin-left: 20px;
+}
 
 /*  
 .percentage-text {
