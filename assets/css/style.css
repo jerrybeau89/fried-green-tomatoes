@@ -2,7 +2,7 @@ body{
   background-color: blanchedalmond;
 }
 
-#fgt-img {
+#fgt-img, #fgt-img-search {
   height: 35px;
   object-fit: scale-down;
   max-width: 50%;
@@ -10,7 +10,7 @@ body{
   left: 0;
   top:0;
 }
-#fgt-img2 {
+#fgt-img2, #fgt-img-search2 {
   height: 35px;
   object-fit: scale-down;
   max-width: 50%;
