@@ -27,7 +27,6 @@ body{
   margin-bottom: 0;
 }
 
-
 .flip-card-inner{
 position: relative;
 width: 100%;
@@ -51,7 +50,7 @@ backface-visibility: hidden;
 border-radius: 16px;
 }
 
-.flip-card-back, #movie-title0{
+.flip-card-back{
 transform: rotateY(180deg);
 }
 
@@ -60,10 +59,3 @@ transform: rotateY(180deg);
   margin: 0;
 }
 
-/*  
-.percentage-text {
-  vertical-align: text-top;
-  font-size: large;
-
-}
-*/
