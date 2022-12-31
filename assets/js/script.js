@@ -27,15 +27,65 @@ function getOMDBAPI() {
         .then (function (data){
             console.log(data);
             let movieTitle = data.Title;
-            let TopRatedOne = parseFloat(data.Ratings[0].Value);
-            let TopRatedTwo = parseFloat(data.Ratings[1].Value);
-            let TopRatedThree = parseFloat(data.Ratings[2].Value);
-            let TopRatedAvg = ((TopRatedOne *10) + TopRatedTwo + TopRatedThree) / 3;
-           
-            $('#search-input').val('');
+            let topRatingOne = parseFloat(data.Ratings[0].Value);
+            let topRatingTwo = parseFloat(data.Ratings[1].Value);
+            let topRatingThree = parseFloat(data.Ratings[2].Value);
+            let topRatingAvg = ((topRatingOne *10) + topRatingTwo + topRatingThree) / 3;
+            let moviePlot = data.Plot;
+            let movieActors = data.Actors;
+            let moviePoster = data.Poster;
+            let movieYear = data.Year;
+            let movieRated = data.Rated;
+            let movieDirector = data.Director;
+            let movieGenre = data.Genre;
+            let dataClear = ['#movie-title','#year', '#rated','#genre','#director','#pop','#actors','#overview','#poster'];
+
+            for (let i = 0; i < dataClear.length; i++) {
+      
+            $(dataClear[i]).html('');
+            }
+
+            $('#poster').attr({'src': moviePoster});
+            $('#movie-title').append(movieTitle);
+            $('#year').append(movieYear);
+            $('#rated').append(movieRated);
+            $('#genre').append(movieGenre);
+            $('#director').append(movieDirector);
+            $('#pop').append(topRatingAvg.toFixed(1) + '%');
+            $('#actors').append(movieActors);
+            $('#overview').append(moviePlot);
         })
 }
 
+function getMoviePosterOMDB() {
+    for (let f = 0; f < 4; f++) {
+        let movieTitle = document.getElementById('movie-title' + f).innerText;
+    let OMDBUrl = "http://www.omdbapi.com/?t=" + movieTitle +  "&apikey=7badcfc8";
+    
+    fetch (OMDBUrl)
+        .then (function (response){
+            if (response.ok) { 
+                return response.json();
+            }else {
+                return Promise.reject("error: "+ response.status)
+            }      
+        })
+        .then (function (data){
+            console.log(data);
+            let moviePosterSRC = data.Poster;
+            let dataClear = ['#movie-poster' + f];    
+            console.log(moviePosterSRC);
+            for (let i = 0; i < dataClear.length; i++) {
+                $(dataClear[i]).html('');
+            }
+            if (moviePosterSRC === undefined){
+            $('#movie-poster'+ f).attr({'src': 'assets/images/FGTH.png', 'height': '120px','width': '90px'});
+            } else {
+            $('#movie-poster'+ f).attr({'src': moviePosterSRC});
+            }
+        })
+    }
+}
 //This API is for generating the Movies by Rating and Movies by Popularity sections. 
 function getTMDBMovieLists() {
     //This for loop allows the function to call two separate APIs.
@@ -83,7 +133,7 @@ function getTMDBMovieLists() {
 
 //This API is for generating the Featured Movies by Rating. 
 function getTMDBFeaturedMovie() {  
-  let TMDBFeaturedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomNumber(3);
+  let TMDBFeaturedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=ddb8f203c5d7bd9f839a468fe47853cb&page=" + getRandomNumber(4);
   fetch (TMDBFeaturedUrl)
       .then (function (response){
           if (response.ok) { 
@@ -99,6 +149,13 @@ function getTMDBFeaturedMovie() {
           let featuredTopRated = (parseFloat(data.results[f].vote_average) *10);
           let featuredMovieGenre = data.results[f].genre_ids;
           let movieOverview = data.results[f].overview;
+        //   let movieOverviewTruncate;
+
+        //   if (movieOverview.length <= 225){
+        //     movieOverviewTruncate = movieOverview;
+        //   } else {
+        //     movieOverviewTruncate = movieOverview.substring(0, 200) + "...";
+        //   }
 
           $('#pop' + f).append(featuredTopRated + "%");
           $('#overview' + f).append(movieOverview);
@@ -144,3 +201,4 @@ function getTMDBFeaturedMovie() {
 // setTimeout(myMoveTwo, 2000);
 getTMDBMovieLists();
 getTMDBFeaturedMovie();
+setTimeout(getMoviePosterOMDB, 700);
