@@ -16,6 +16,14 @@ $('#search-btn').click(function(event){
     location.assign(searchString);
   });
 
+  $('#movieTitleLink0').click(function(event){
+    event.preventDefault();
+    let searchInput = document.getElementById('movieTitleLink0');
+    let searchString = './search-index.html?q=' + searchInput;
+
+    location.assign(searchString);
+  });
+
 //This is a random number generator that is used to determine the page query for the API below. 
 function getRandomNumber(max) {
   return Math.floor(Math.random() * max);
@@ -122,14 +130,21 @@ function getTMDBMovieLists() {
             let movieTemplate = document.getElementById('movie-lists').content;
             let movieHTML = document.importNode(movieTemplate, true);
             
+
+            
+
             movieHTML.querySelector('.movieTitleLink').textContent = movieTitle;
             movieHTML.querySelector('.movieRating').textContent = TopRated + "%";
 
+            $('.movieTitleLink').attr('id','#movieTitleRef0');
+            
             //Separates the data for the two lists
             if(a<1){
             $('#movieHolder').append(movieHTML);
+            
             }else {
             $('#movieHolder1').append(movieHTML);
+            
             }
         }
     })    

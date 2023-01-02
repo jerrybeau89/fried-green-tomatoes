@@ -18,6 +18,11 @@ body{
   position: relative;
 } */
 
+#poster{
+  margin-top: 10px;
+}
+
+
 .header{
   margin-bottom: 0;
 }
