@@ -1,15 +1,31 @@
 //This is used to declare the users search input and pass the value as a query in the API.
-let movieSearch = $('#search-input').val();
+var movieSearch = $('#search-input').val();
 //This creates an event listener for when the users clicks the search button.
 $('#search-btn').click(function(event){
     event.preventDefault();
-    getOMDBAPI();
+    let searchInput = $('#search-input').val();
+
+    if(!searchInput){
+        console.error('You need a movie title!');
+        return;
+    }
+    let searchString = './search-index.html?q=' + searchInput;
+
+    location.assign(searchString);
     
   });
 
-function getOMDBAPI() {
-    let OMDBUrl = "http://www.omdbapi.com/?t=" + $('#search-input').val() +  "&apikey=7badcfc8";
-    console.log(movieSearch);
+function getURLParams() {
+    let urlParams = document.location.search;
+    
+    let query = urlParams.split('=').pop();
+    getOMDBAPI(query)
+}  
+
+
+function getOMDBAPI(query) {
+    let OMDBUrl = "http://www.omdbapi.com/?t=" + query +  "&apikey=7badcfc8";
+
     fetch (OMDBUrl)
         .then (function (response){
             if (response.ok) { 
@@ -19,7 +35,7 @@ function getOMDBAPI() {
             }      
         })
         .then (function (data){
-            console.log(data);
+
             let movieTitle = data.Title;
             let topRatingOne = parseFloat(data.Ratings[0].Value);
             let topRatingTwo = parseFloat(data.Ratings[1].Value);
@@ -53,3 +69,6 @@ function getOMDBAPI() {
             
         })
 }
+
+
+getURLParams();
