@@ -6,23 +6,18 @@ body{
   height: 35px;
   object-fit: scale-down;
   max-width: 50%;
-  position: absolute;
-  left: 0;
-  top:0;
 }
 #fgt-img2, #fgt-img-search2 {
   height: 35px;
   object-fit: scale-down;
   max-width: 50%;
-  position: absolute;
-  right: 0;
-  top:0;
+
 }
 
-#animate {
+/* #animate {
   position: relative;
-  
-}
+} */
+
 .header{
   margin-bottom: 0;
 }
