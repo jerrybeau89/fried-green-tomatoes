@@ -1,10 +1,19 @@
 //This is used to declare the users search input and pass the value as a query in the API.
 let movieSearch = $('#search-input').val();
+
+
 //This creates an event listener for when the users clicks the search button.
 $('#search-btn').click(function(event){
     event.preventDefault();
-    getOMDBAPI();
-    window.location.href = "search-index.html";
+    let searchInput = $('#search-input').val();
+
+    if(!searchInput){
+        console.error('You need a movie title!');
+        return;
+    }
+    let searchString = './search-index.html?q=' + searchInput;
+
+    location.assign(searchString);
   });
 
 //This is a random number generator that is used to determine the page query for the API below. 
@@ -12,49 +21,49 @@ function getRandomNumber(max) {
   return Math.floor(Math.random() * max);
 }
 
-function getOMDBAPI() {
-    let OMDBUrl = "http://www.omdbapi.com/?t=" + $('#search-input').val() +  "&apikey=7badcfc8";
+// function getOMDBAPI() {
+//     let OMDBUrl = "http://www.omdbapi.com/?t=" + $('#search-input').val() +  "&apikey=7badcfc8";
 
-    fetch (OMDBUrl)
-        .then (function (response){
-            if (response.ok) { 
-                return response.json();
-            }else {
-                return Promise.reject("error: "+ response.status)
-            }      
-        })
-        .then (function (data){
+//     fetch (OMDBUrl)
+//         .then (function (response){
+//             if (response.ok) { 
+//                 return response.json();
+//             }else {
+//                 return Promise.reject("error: "+ response.status)
+//             }      
+//         })
+//         .then (function (data){
             
-            let movieTitle = data.Title;
-            let topRatingOne = parseFloat(data.Ratings[0].Value);
-            let topRatingTwo = parseFloat(data.Ratings[1].Value);
-            let topRatingThree = parseFloat(data.Ratings[2].Value);
-            let topRatingAvg = ((topRatingOne *10) + topRatingTwo + topRatingThree) / 3;
-            let moviePlot = data.Plot;
-            let movieActors = data.Actors;
-            let moviePoster = data.Poster;
-            let movieYear = data.Year;
-            let movieRated = data.Rated;
-            let movieDirector = data.Director;
-            let movieGenre = data.Genre;
-            let dataClear = ['#movie-title','#year', '#rated','#genre','#director','#pop','#actors','#overview','#poster'];
+//             // let movieTitle = data.Title;
+//             // let topRatingOne = parseFloat(data.Ratings[0].Value);
+//             // let topRatingTwo = parseFloat(data.Ratings[1].Value);
+//             // let topRatingThree = parseFloat(data.Ratings[2].Value);
+//             // let topRatingAvg = ((topRatingOne *10) + topRatingTwo + topRatingThree) / 3;
+//             // let moviePlot = data.Plot;
+//             // let movieActors = data.Actors;
+//             // let moviePoster = data.Poster;
+//             // let movieYear = data.Year;
+//             // let movieRated = data.Rated;
+//             // let movieDirector = data.Director;
+//             // let movieGenre = data.Genre;
+//             // let dataClear = ['#movie-title','#year', '#rated','#genre','#director','#pop','#actors','#overview','#poster'];
 
-            for (let i = 0; i < dataClear.length; i++) {
+//             // for (let i = 0; i < dataClear.length; i++) {
       
-            $(dataClear[i]).html('');
-            }
+//             // $(dataClear[i]).html('');
+//             // }
 
-            $('#poster').attr({'src': moviePoster});
-            $('#movie-title').append(movieTitle);
-            $('#year').append(movieYear);
-            $('#rated').append(movieRated);
-            $('#genre').append(movieGenre);
-            $('#director').append(movieDirector);
-            $('#pop').append(topRatingAvg.toFixed(1) + '%');
-            $('#actors').append(movieActors);
-            $('#overview').append(moviePlot);
-        })
-}
+//             // $('#poster').attr({'src': moviePoster});
+//             // $('#movie-title').append(movieTitle);
+//             // $('#year').append(movieYear);
+//             // $('#rated').append(movieRated);
+//             // $('#genre').append(movieGenre);
+//             // $('#director').append(movieDirector);
+//             // $('#pop').append(topRatingAvg.toFixed(1) + '%');
+//             // $('#actors').append(movieActors);
+//             // $('#overview').append(moviePlot);
+//         })
+// }
 
 function getMoviePosterOMDB() {
 
