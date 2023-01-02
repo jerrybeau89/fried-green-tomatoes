@@ -5,7 +5,6 @@ $('#search-btn').click(function(event){
     event.preventDefault();
     getOMDBAPI();
     window.location.href = "search-index.html";
-    console.log(movieSearch);
   });
 
 //This is a random number generator that is used to determine the page query for the API below. 
@@ -15,7 +14,7 @@ function getRandomNumber(max) {
 
 function getOMDBAPI() {
     let OMDBUrl = "http://www.omdbapi.com/?t=" + $('#search-input').val() +  "&apikey=7badcfc8";
-    console.log(movieSearch);
+
     fetch (OMDBUrl)
         .then (function (response){
             if (response.ok) { 
@@ -25,7 +24,7 @@ function getOMDBAPI() {
             }      
         })
         .then (function (data){
-            console.log(data);
+            
             let movieTitle = data.Title;
             let topRatingOne = parseFloat(data.Ratings[0].Value);
             let topRatingTwo = parseFloat(data.Ratings[1].Value);
@@ -58,8 +57,11 @@ function getOMDBAPI() {
 }
 
 function getMoviePosterOMDB() {
+
     for (let f = 0; f < 4; f++) {
-        let movieTitle = document.getElementById('movie-title' + f).innerText;
+
+    let movieTitle = document.getElementById('movie-title' + f).innerText;
+
     let OMDBUrl = "http://www.omdbapi.com/?t=" + movieTitle +  "&apikey=7badcfc8";
     
     fetch (OMDBUrl)
@@ -71,10 +73,9 @@ function getMoviePosterOMDB() {
             }      
         })
         .then (function (data){
-            console.log(data);
             let moviePosterSRC = data.Poster;
             let dataClear = ['#movie-poster' + f];    
-            console.log(moviePosterSRC);
+        
             for (let i = 0; i < dataClear.length; i++) {
                 $(dataClear[i]).html('');
             }
@@ -105,20 +106,15 @@ function getTMDBMovieLists() {
             }      
         })
         .then (function (data){
-            console.log(data);
+           
             for (let i = 0; i < 10; i++) {
             let movieTitle = data.results[i].title;
             let TopRated = (parseFloat(data.results[i].vote_average) *10);
             let movieTemplate = document.getElementById('movie-lists').content;
             let movieHTML = document.importNode(movieTemplate, true);
-            let movieRatingIcon =$('<img>')
-
-            movieRatingIcon.addClass('responsive-img');
-            movieRatingIcon.attr({'src': 'assets/images/FGTH.png', 'height': '30px','width': '30px'});
+            
             movieHTML.querySelector('.movieTitleLink').textContent = movieTitle;
             movieHTML.querySelector('.movieRating').textContent = TopRated + "%";
-            // $('.movieRating').append(movieRatingIcon);
-
 
             //Separates the data for the two lists
             if(a<1){
@@ -149,56 +145,32 @@ function getTMDBFeaturedMovie() {
           let featuredTopRated = (parseFloat(data.results[f].vote_average) *10);
           let featuredMovieGenre = data.results[f].genre_ids;
           let movieOverview = data.results[f].overview;
-        //   let movieOverviewTruncate;
-
-        //   if (movieOverview.length <= 225){
-        //     movieOverviewTruncate = movieOverview;
-        //   } else {
-        //     movieOverviewTruncate = movieOverview.substring(0, 200) + "...";
-        //   }
 
           $('#pop' + f).append(featuredTopRated + "%");
           $('#overview' + f).append(movieOverview);
-          // $('#genres').append(featuredMovieGenre);
+          $('#genres' + f).append(featuredMovieGenre);
           $('#movie-title' + f).append(featuredMovieTitle);
           }
       })    
 }
 
-// let id = null;
-// function myMove() {
-//   let elem = document.getElementById("fgt-img");   
-//   let pos = 0;
-//   clearInterval(id);
-//   id = setInterval(frame, 6);
-//   function frame() {
-//     if (pos == 950) {
-//       clearInterval(id);
-//     } else {
-//       pos++;  
-//       elem.style.left = pos + 'px';
-//       elem.style.top = pos/39 + 'px'; 
-//     }
-//   }
+// async function fetchMovie(id) {
+//     const response = await fetch(`https://api.themoviedb.org/3/movie/id?api_key=ddb8f203c5d7bd9f839a468fe47853cb`);
+//     const movie = await response.json();
+//     return movie;
 // }
-// let id2 = null;
-// function myMoveTwo() {
-//   let elem2 = document.getElementById("fgt-img2");   
-//   let pos2 = 0;
-//   clearInterval(id2);
-//   id2 = setInterval(frame, 11);
-//   function frame() {
-//     if (pos2 == 537) {
-//       clearInterval(id2);
-//     } else {
-//       pos2++;  
-//       elem2.style.right = pos2 + 'px';
-//       elem2.style.top = pos2/24 + 'px'; 
-//     }
-//   }
+
+// let movieId = document.getElementById('genres0').innerText
+// for (let f = 0; f < 4; f++) {
+//     console.log(movieId);
+// fetchMovie(movieId)
+    
+//     .then(movie => {
+//         movie.genres.forEach(genre => {
+//             console.log("genre id: " + genre.id + ", genre name: " + genre.name); // output genre and id
+//         })
+//     });
 // }
-// setTimeout(myMove, 2000);
-// setTimeout(myMoveTwo, 2000);
 getTMDBMovieLists();
 getTMDBFeaturedMovie();
 setTimeout(getMoviePosterOMDB, 700);
