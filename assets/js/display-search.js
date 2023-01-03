@@ -57,13 +57,13 @@ function getOMDBAPI(query) {
 
             $('#poster').attr({'src': moviePoster});
             $('#movie-title').append(movieTitle);
-            $('#year').append(movieYear);
-            $('#rated').append(movieRated);
-            $('#genre').append(movieGenre);
-            $('#director').append(movieDirector);
-            $('#pop').append(topRatingAvg.toFixed(1) + '%');
-            $('#actors').append(movieActors);
-            $('#overview').append(moviePlot);
+            $('#year').append("<h6>"+ 'Year: ' + "</h6>" + movieYear);
+            $('#rated').append("<h6>"+'Rated: ' + "</h6>" + movieRated);
+            $('#genre').append("<h6>"+'Genre(s): ' + "</h6>" + movieGenre);
+            $('#director').append("<h6>"+'Director: ' + "</h6>" + movieDirector);
+            $('#pop').append("<h6>"+'Rating: ' + "</h6>" + topRatingAvg.toFixed(1) + '%');
+            $('#actors').append("<h6>"+'Actors: ' + "</h6>" + movieActors);
+            $('#overview').append("<h6>"+'Plot: ' + "</h6>" + moviePlot);
             
             $('#search-input').val('');
             
