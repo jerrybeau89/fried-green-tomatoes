@@ -1,7 +1,6 @@
 //This is used to declare the users search input and pass the value as a query in the API.
 let movieSearch = $('#search-input').val();
 
-
 //This creates an event listener for when the users clicks the search button.
 $('#search-btn').click(function(event){
     event.preventDefault();
@@ -24,7 +23,6 @@ $('#search-btn').click(function(event){
     $('.movieTitleLink').attr("href", searchString + movieTitle);
     return;
   }
-
 
 //This is a random number generator that is used to determine the page query for the API below. 
 function getRandomNumber(max) {
@@ -149,10 +147,11 @@ function getTMDBFeaturedMovie() {
       })
       .then (function (data){
 
-          for (let f = 0; f < 4; f++) {         
-          let featuredMovieTitle = data.results[f].title;
-          let featuredTopRated = (parseFloat(data.results[f].vote_average) *10);
-          let movieOverview = data.results[f].overview;
+          for (let f = 0; f < 4; f++) {
+          let num = getRandomNumber(16)         
+          let featuredMovieTitle = data.results[f + num].title;
+          let featuredTopRated = (parseFloat(data.results[f + num].vote_average) *10);
+          let movieOverview = data.results[f + num].overview;
 
           $('#pop' + f).append(featuredTopRated + "%");
           $('#overview' + f).append(movieOverview);
@@ -160,6 +159,11 @@ function getTMDBFeaturedMovie() {
           }
       })    
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
 
 getTMDBMovieLists();
 getTMDBFeaturedMovie();

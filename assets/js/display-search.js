@@ -35,8 +35,16 @@ function getOMDBAPI(query) {
             }      
         })
         .then (function (data){
-
+            console.log(data);
             let movieTitle = data.Title;
+            console.log(movieTitle);
+            if (movieTitle === undefined){
+            $('#movie-title').append("Movie not currently in our database, please try another title!");
+            $('#poster').attr({'src': 'assets/images/FGTH.png', 'height': '120px','width': '90px'});
+            } else if (movieTitle == "Incorrect IMDB ID"){
+                $('#movie-title').append("Movie ID incorrect, please try another title!");
+                $('#poster').attr({'src': 'assets/images/FGTH.png', 'height': '120px','width': '90px'});
+            }else{
             let topRatingOne = parseFloat(data.Ratings[0].Value);
             let topRatingTwo = parseFloat(data.Ratings[1].Value);
             let topRatingThree = parseFloat(data.Ratings[2].Value);
@@ -61,14 +69,17 @@ function getOMDBAPI(query) {
             $('#rated').append("<h6>"+'Rated: ' + "</h6>" + movieRated);
             $('#genre').append("<h6>"+'Genre(s): ' + "</h6>" + movieGenre);
             $('#director').append("<h6>"+'Director: ' + "</h6>" + movieDirector);
-            $('#pop').append("<h6>"+'Rating: ' + "</h6>" + topRatingAvg.toFixed(1) + '%');
+            $('#pop').append("<h6>"+'FGT AVG Rating: ' + "</h6>" + topRatingAvg.toFixed(1) + '%');
             $('#actors').append("<h6>"+'Actors: ' + "</h6>" + movieActors);
             $('#overview').append("<h6>"+'Plot: ' + "</h6>" + moviePlot);
             
             $('#search-input').val('');
-            
+        }
         })
 }
 
-
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
 getURLParams();
