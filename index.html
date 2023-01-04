@@ -12,19 +12,22 @@
 </head>
 <body>
   <!-- This is our header -->
-  <header id='animate' class="center red darken-1 yellow-text z-depth-4">
-    <code>
-    <h1 class="header">Fried Green T<img id="fgt-img" src="assets/images/FGTH.png" alt="">mat<img id="fgt-img2" src="assets/images/FGTH.png" alt="">es</h1></code>
+  <header class="center red darken-1 yellow-text z-depth-4">
+    <h1 class="header">Fried Green T<img id="fgt-img" src="assets/images/FGTH.png" alt="">mat<img id="fgt-img2" src="assets/images/FGTH.png" alt="">es</h1>
   </header>
   <!-- Nav bar for the website -->
   <nav>
     <div class="nav-wrapper">
       <a href="./index.html" class="brand-logo home-button">Home</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="./about-us.html">About Us</a></li>
       </ul>
     </div>
   </nav>
+  <ul id="mobile-demo" class="sidenav">
+    <li><a href="./about-us.html">About Us</a></li>
+  </ul>
 <!-- This is the search field and button -->
   <div class="row">
     <div class="col s12 m4">
@@ -131,7 +134,7 @@
  <template id="movie-lists">
  <div class="divider"></div>
       <div class="row">
-        <a class="movieTitleLink btn-flat blue-text col s6 truncate" target="_self" onclick="onclick_event()"></a>
+        <a class="movieTitleLink btn-flat blue-text col s6 truncate" target="_blank" onclick="onclick_event()"></a>
         <div>
           <div class="col s6 right-align">
             <span class="movieRating">
