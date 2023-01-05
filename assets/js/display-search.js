@@ -24,7 +24,7 @@ function getURLParams() {
 
 
 function getOMDBAPI(query) {
-    let OMDBUrl = "http://www.omdbapi.com/?t=" + query +  "&apikey=7badcfc8";
+    let OMDBUrl = "https://www.omdbapi.com/?t=" + query +  "&apikey=7badcfc8";
 
     fetch (OMDBUrl)
         .then (function (response){
@@ -35,9 +35,9 @@ function getOMDBAPI(query) {
             }      
         })
         .then (function (data){
-            console.log(data);
+            
             let movieTitle = data.Title;
-            console.log(movieTitle);
+            
             if (movieTitle === undefined){
             $('#movie-title').append("Movie not currently in our database, please try another title!");
             $('#poster').attr({'src': 'assets/images/FGTH.png', 'height': '120px','width': '90px'});
