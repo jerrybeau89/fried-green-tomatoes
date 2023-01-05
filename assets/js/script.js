@@ -34,7 +34,7 @@ function getOMDBGenre() {
     for (let f = 0; f < 4; f++) {
         let movieTitle = document.getElementById('movie-title' + f).innerText;
 
-    let OMDBUrl = "http://www.omdbapi.com/?t=" + movieTitle +  "&apikey=7badcfc8";
+    let OMDBUrl = "https://www.omdbapi.com/?t=" + movieTitle +  "&apikey=7badcfc8";
 
     fetch (OMDBUrl)
         .then (function (response){
@@ -67,7 +67,7 @@ function getMoviePosterOMDB() {
 
     let movieTitle = document.getElementById('movie-title' + f).innerText;
 
-    let OMDBUrl = "http://www.omdbapi.com/?t=" + movieTitle +  "&apikey=7badcfc8";
+    let OMDBUrl = "https://www.omdbapi.com/?t=" + movieTitle +  "&apikey=7badcfc8";
     
     fetch (OMDBUrl)
         .then (function (response){

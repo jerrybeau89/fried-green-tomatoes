@@ -24,7 +24,7 @@ function getURLParams() {
 
 
 function getOMDBAPI(query) {
-    let OMDBUrl = "http://www.omdbapi.com/?t=" + query +  "&apikey=7badcfc8";
+    let OMDBUrl = "https://www.omdbapi.com/?t=" + query +  "&apikey=7badcfc8";
 
     fetch (OMDBUrl)
         .then (function (response){
